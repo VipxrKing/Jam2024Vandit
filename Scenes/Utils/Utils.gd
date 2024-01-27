@@ -1,8 +1,9 @@
 extends Node
 
+var bike_key:bool = true
 var coconut_key:bool = false
 var coconut_counter:int = 0
-var keys:int = 0
+var keys:int = 3
 
 func get_scene_manager():
 	return get_node("/root/SceneManager")
@@ -18,3 +19,6 @@ func _input(event):
 		var id:String = Time.get_date_string_from_system() + Time.get_datetime_string_from_system()
 		id = id.replace(":","")
 		get_tree().root.get_viewport().get_texture().get_image().save_png("res://Screenshots/Screenshot" + id + ".png")
+
+func bet():
+	return randi_range(0,3)
