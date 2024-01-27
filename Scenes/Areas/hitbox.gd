@@ -6,6 +6,6 @@ class_name Hitbox
 
 func _on_area_entered(area):
 	if area is Hurtbox and active:
-		if area.active:
+		if area.active and active:
 			area.change_hp(-damage)
-	active = false
+

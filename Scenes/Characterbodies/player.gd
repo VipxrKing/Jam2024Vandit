@@ -41,9 +41,9 @@ func _input(event):
 
 	if Input.is_action_just_pressed("GRAB"):
 			if !Grabbing:
-				for i in $Mesh/GrabMarker/GrabArea.get_overlapping_bodies():
+				for i in $Mesh/Hand/GrabArea.get_overlapping_bodies():
 					if i.find_child("GrabableBody") != null:
-						$Mesh/GrabMarker.grab_body(i,i.find_child("GrabableBody"))
+						$Mesh/Hand.grab_body(i,i.find_child("GrabableBody"))
 						Grabbing = true
 			else:
 				$Mesh/GrabMarker.release_body()
