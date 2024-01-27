@@ -29,6 +29,9 @@ var ROTATION_SPEED:float = 8.0
 
 var direction:Vector3 = Vector3.ZERO
 
+var grass = preload("res://Shaders/GrassMove.tres")
+
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -42,14 +45,17 @@ func _input(event):
 	if Input.is_action_just_pressed("GRAB"):
 			if !Grabbing:
 				for i in $Mesh/Hand/GrabArea.get_overlapping_bodies():
-					if i.find_child("GrabableBody") != null:
-						$Mesh/Hand.grab_body(i,i.find_child("GrabableBody"))
+					if i is Weapon != null:
+						$Mesh/Hand.grab_body(i,i.find_child("Handle"))
 						Grabbing = true
 			else:
-				$Mesh/GrabMarker.release_body()
+				$Mesh/Hand.release_body()
 				Grabbing = false
 
 func _physics_process(delta):
+	#Interactive grass
+	grass.set_shader_parameter("player_pos", global_position)
+	
 	if Input.is_action_pressed("RUN"):
 		if direction and is_on_floor():
 			running = true

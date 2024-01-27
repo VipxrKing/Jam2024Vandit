@@ -22,7 +22,7 @@ func change_hp(ammount):
 		
 	if hp <= 0:
 		$Mesh/Trunk.freeze = false
-		$Mesh/Trunk.apply_force(Vector3(randi_range(-500,500),randi_range(-100,100),randi_range(-100,100)))
+		$Mesh/Trunk.apply_force(Vector3(randi_range(-1000,1000),randi_range(-100,100),randi_range(-1000,1000)))
 
 func drop_coconut():
 	pass
