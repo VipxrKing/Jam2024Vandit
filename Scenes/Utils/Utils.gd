@@ -1,5 +1,9 @@
 extends Node
 
+var coconut_key:bool = false
+var coconut_counter:int = 0
+var keys:int = 0
+
 func get_scene_manager():
 	return get_node("/root/SceneManager")
 
