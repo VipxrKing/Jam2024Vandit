@@ -64,7 +64,7 @@ func _create_items_recursive(node, parent, theme) -> void:
 	var node_item = _tree.create_item(parent)
 	node_item.set_text(0, node.get_name())
 	node_item.set_meta("node", node)
-	node_item.set_icon(0, theme.get_icon(node.get_class(), "EditorIcons"))
+#	node_item.set_icon(0, theme.get_icon(node.get_class(), "EditorIcons"))
 
 	for child in node.get_children():
 		_create_items_recursive(child, node_item, theme)
