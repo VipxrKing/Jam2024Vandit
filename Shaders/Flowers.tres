@@ -1,0 +1,63 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://dy3pihqst22fd"]
+
+[ext_resource type="Texture2D" uid="uid://bogy27qrys303" path="res://Mesh/MeshTextures/Flowers/LowPolyEnviro_Color.png" id="1_fxewi"]
+[ext_resource type="Texture2D" uid="uid://dbychrk5j2mux" path="res://Mesh/MeshTextures/Flowers/LPEP_TextureAtlas_Cutout.png" id="2_ec08t"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_47ts5"]
+texture = ExtResource("1_fxewi")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_q632w"]
+texture = ExtResource("2_ec08t")
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_uwl4o"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ydymk"]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 ColorParameter : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_3;
+
+
+
+void fragment() {
+// ColorParameter:4
+	vec4 n_out4p0 = ColorParameter;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// VectorOp:5
+	vec3 n_out5p0 = vec3(n_out4p0.xyz) * vec3(n_out2p0.xyz);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Output:0
+	ALBEDO = n_out5p0;
+	ALPHA = n_out3p0.x;
+
+
+}
+"
+graph_offset = Vector2(-247.241, -65.6715)
+nodes/fragment/0/position = Vector2(580, 260)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_47ts5")
+nodes/fragment/2/position = Vector2(-280, 80)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_q632w")
+nodes/fragment/3/position = Vector2(-160, 400)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_uwl4o")
+nodes/fragment/4/position = Vector2(-20, 60)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_ydymk")
+nodes/fragment/5/position = Vector2(320, 200)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 4, 0, 5, 0, 2, 0, 5, 1, 5, 0, 0, 0)

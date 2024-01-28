@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bx7dvdxapwwys"]
+
+[ext_resource type="Shader" uid="uid://dy3pihqst22fd" path="res://Shaders/Flowers.tres" id="1_m8th8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_m8th8")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
