@@ -20,7 +20,3 @@ func grab_body(body: RigidBody3D, grabable:Marker3D) -> void:
 func release_body() -> void:
 	Grabbed = false
 	GrabbedBody = null
-
-func hitbox(bool):
-	if grabbed:
-		GrabbedBody.
