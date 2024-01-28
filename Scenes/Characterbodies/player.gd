@@ -43,7 +43,7 @@ func _input(event):
 		camera_mount.rotation.x = clamp(camera_mount.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 
 	if Input.is_action_just_pressed("GRAB"):
-			if !Grabbing:
+			if Grabbing:
 				for i in $Mesh/Hand/GrabArea.get_overlapping_bodies():
 					if i is Weapon != null:
 						$Mesh/Hand.grab_body(i,i.find_child("Handle"))
