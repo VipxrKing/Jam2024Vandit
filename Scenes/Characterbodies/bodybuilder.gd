@@ -71,7 +71,7 @@ func _on_pose_timeout():
 func change_hp(ammount):
 	AI_STATE == "TARGET"
 	hp += ammount
-	animation_travel("Walking")
+	#animation_travel("Walking")
 	if !mad:
 		get_tree().call_group("BODYBUILDERS","emputado")
 
