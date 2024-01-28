@@ -157,8 +157,8 @@ func animation_travel(anim:String):
 
 func hitbox_on():
 	if Grabbing:
-		hand.turn(true)
+		hand.GrabbedBody.turn(true)
 
 func hitbox_off():
 	if Grabbing:
-		hand.turn(false)
+		hand.GrabbedBody.turn(false)
