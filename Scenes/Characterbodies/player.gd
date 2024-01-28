@@ -43,14 +43,25 @@ func _input(event):
 		camera_mount.rotation.x = clamp(camera_mount.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 
 	if Input.is_action_just_pressed("GRAB"):
-			if Grabbing:
-				for i in $Mesh/Hand/GrabArea.get_overlapping_bodies():
-					if i is Weapon != null:
-						$Mesh/Hand.grab_body(i,i.find_child("Handle"))
+			if !Grabbing:
+				for i in $Mesh/GrabArea.get_overlapping_bodies():
+					if i is Weapon:
+						print("YIII")
+						$"Mesh/Root Scene/RootNode/Skeleton3D/VisualHand/Hand".grab_body(i,i.find_child("Handle"))
 						Grabbing = true
 			else:
-				$Mesh/Hand.release_body()
+				$"Mesh/Root Scene/RootNode/Skeleton3D/VisualHand/Hand".release_body()
 				Grabbing = false
+		
+	if Input.is_action_just_pressed("INTERACT"):
+		$Mesh/RayCast3D.get_collider()
+		
+		
+func raycast_test():
+	var obj_int = $Mesh/RayCast3D.get_collider()
+	if obj_int != null:
+		if obj_int.name == "InteractArea":
+			obj_int.emit("Interact")
 
 func _physics_process(delta):
 	#Interactive grass
